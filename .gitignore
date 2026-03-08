@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+yolov8n.pt
+gle_shot_*.png
