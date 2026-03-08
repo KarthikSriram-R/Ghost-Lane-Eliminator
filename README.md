@@ -66,3 +66,4 @@ $$T_{green} = \min(Weighted\_Load \times 2 + T_{min}, T_{max})$$
 ---
 
 
+
