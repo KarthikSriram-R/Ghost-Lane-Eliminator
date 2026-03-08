@@ -1,0 +1,5 @@
+```mermaid
+graph TD
+    A[Input Feed] --> B[YOLOv8 Detection]
+    B --> C[Lane Manager]
+    C --> D[Dynamic Signal]
