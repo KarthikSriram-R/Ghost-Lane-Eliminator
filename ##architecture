@@ -1,5 +1,31 @@
-```mermaid
 graph TD
-    A[Input Feed] --> B[YOLOv8 Detection]
-    B --> C[Lane Manager]
-    C --> D[Dynamic Signal]
+    subgraph Input_Layer [Input Layer]
+        A[Webcam Feed] --> D[Frame Pre-processing]
+        B[Screen Capture] --> D
+        C[Video File] --> D
+    end
+
+    subgraph Detection_Engine [AI Detection Engine]
+        D --> E{Detection Mode}
+        E -- High Perf --> F[YOLOv8n Inference]
+        E -- Fallback --> G[LAB Color Contour Detection]
+        F --> H[Vehicle Class Weighting]
+        G --> H
+    end
+
+    subgraph Tracking_Logic [Logic & Analytics]
+        H --> I[IOU-based Centroid Tracker]
+        I --> J[Lane Assignment Engine]
+        J --> K[Dynamic Timer Calculation]
+        K --> L[Emergency Preemption Trigger]
+    end
+
+    subgraph Output_Interface [Output Dashboard]
+        L --> M[Real-time OpenCV Overlay]
+        M --> N[Heatmap Generation]
+        M --> O[Stats & Congestion Index]
+        M --> P[Traffic Signal Control Simulation]
+    end
+
+    style L fill:#f96,stroke:#333,stroke-width:2px
+    style F fill:#00d2ff,stroke:#333
